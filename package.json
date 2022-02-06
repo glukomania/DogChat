@@ -11,6 +11,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/transformer-less": "^2.2.1",
+    "less": "^4.1.2",
     "parcel": "^2.2.1"
+  },
+  "dependencies": {
+    "transparency": "^1.0.0"
   }
-} 
+}

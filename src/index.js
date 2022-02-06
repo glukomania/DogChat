@@ -1,5 +1,15 @@
-const sum = (...args) => {
-  return args.reduce((res, item) => res + item);
+import Transparency from "transparency";
+
+// const testtext = document.querySelector("#root");
+// testtext.textContent = "trololo";
+
+var hello = {
+  hello: "Hello",
+  goodbye: "<i>Goodbye!</i>",
+  greeting: "Howdy!",
+  "hi-label": "Terve!",
 };
-const root = document.querySelector("#root");
-root.textContent = sum(6, -1).toString();
+
+const insertTemp = Transparency.render(document.getElementById("container"), hello);
+
+console.log("insertTemp", insertTemp);
