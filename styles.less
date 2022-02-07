@@ -68,6 +68,13 @@ body {
   color: @greyText;
 }
 
+.userpic {
+  border: 1px dashed @greyText;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+}
+
 .main {
   width: 100%;
   display: flex;
@@ -154,13 +161,17 @@ body {
   display: flex;
   flex-direction: row;
   font-size: 14;
-  margin: 10px 20px;
+  padding: 10px 20px;
 }
 
 .user-name-container {
   display: flex;
   flex-direction: row;
   width: 90%;
+}
+
+.active {
+  background-color: @grey;
 }
 
 .user-avatar {
@@ -201,6 +212,25 @@ body {
   flex-direction: column;
   align-items: flex-end;
 }
+
+.user-bar {
+  height: 30px;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: row;
+  font-size: 18;
+  color: @brownText;
+}
+
+.user-bar-username {
+  margin-left: 15px;
+}
+
+.chat-delete {
+  margin: 0 0 0 auto;
+}
+
 .scroll {
   overflow-x: hidden;
   overflow-y: auto;
