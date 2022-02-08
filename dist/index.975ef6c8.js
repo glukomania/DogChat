@@ -523,11 +523,22 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _transparency = require("transparency");
 var _transparencyDefault = parcelHelpers.interopDefault(_transparency);
 var _dataJs = require("../data.js");
+const breeds = [
+    "poodle",
+    "bulldog",
+    "labrador",
+    "corgi",
+    "beagle",
+    "husky",
+    "rottweiler",
+    "boxer",
+    "shih tzu", 
+];
 const userNameDecorator = function() {
-    return "<b>" + this.name + " (" + this.breed + ")</b>";
+    return "<b>" + this.title + "</b>  (" + breeds[Math.floor(Math.random() * breeds.length)] + ")";
 };
 directives = {
-    username: {
+    title: {
         html: userNameDecorator
     }
 };
@@ -569,7 +580,7 @@ directivesMessage = {
     }
 };
 _transparencyDefault.default.render(document.getElementById("user-wrapper"), _dataJs.privatChats, directives);
-_transparencyDefault.default.render(document.getElementById("groups-wrapper"), _dataJs.groupChats);
+// Transparency.render(document.getElementById("groups-wrapper"), groupChats);
 _transparencyDefault.default.render(document.getElementById("message"), _dataJs.messages, directivesMessage);
 
 },{"transparency":"iTZ6d","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../data.js":"5pclG"}],"iTZ6d":[function(require,module,exports) {
@@ -1272,45 +1283,62 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "privatChats", ()=>privatChats
 );
-parcelHelpers.export(exports, "groupChats", ()=>groupChats
-);
 parcelHelpers.export(exports, "messages", ()=>messages
 );
 const privatChats = [
     {
-        name: "Ivan",
-        breed: "pudel",
-        "count-messages": "0"
+        id: 123,
+        title: "my-chat",
+        avatar: "/123/avatar1.jpg",
+        unread_count: 0,
+        last_message: {
+            user: {
+                first_name: "Petya",
+                second_name: "Pupkin",
+                avatar: "/path/to/avatar.jpg",
+                email: "my@email.com",
+                login: "userLogin",
+                phone: "8(911)-222-33-22"
+            },
+            time: "2020-01-02T14:22:22.000Z",
+            content: "this is message content"
+        }
     },
     {
-        name: "Daniel",
-        breed: "labrador",
-        "count-messages": "3"
+        id: 234,
+        title: "poodles",
+        avatar: "/123/avatar2.jpg",
+        unread_count: 10,
+        last_message: {
+            user: {
+                first_name: "Petya",
+                second_name: "Pupkin",
+                avatar: "/path/to/avatar.jpg",
+                email: "my@email.com",
+                login: "userLogin",
+                phone: "8(911)-222-33-22"
+            },
+            time: "2020-01-02T14:22:22.000Z",
+            content: "this is message content"
+        }
     },
     {
-        name: "Donald",
-        breed: "Bulldog",
-        "count-messages": "1"
-    },
-    {
-        name: "Anna",
-        breed: "Beagle",
-        "count-messages": "0"
-    },
-    {
-        name: "Maria",
-        breed: "Poodle",
-        "count-messages": "1"
-    }, 
-];
-const groupChats = [
-    {
-        username: "Park walkers",
-        "count-messages": "1"
-    },
-    {
-        username: "Poodels owners",
-        "count-messages": "0"
+        id: 456,
+        title: "central-park",
+        avatar: "/123/avatar3.jpg",
+        unread_count: 1,
+        last_message: {
+            user: {
+                first_name: "Petya",
+                second_name: "Pupkin",
+                avatar: "/path/to/avatar.jpg",
+                email: "my@email.com",
+                login: "userLogin",
+                phone: "8(911)-222-33-22"
+            },
+            time: "2020-01-02T14:22:22.000Z",
+            content: "this is message content"
+        }
     }, 
 ];
 const messages = [

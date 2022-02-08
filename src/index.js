@@ -1,12 +1,23 @@
 import Transparency from "transparency";
 import { privatChats, groupChats, messages } from "../data.js";
 
+const breeds = [
+  "poodle",
+  "bulldog",
+  "labrador",
+  "corgi",
+  "beagle",
+  "husky",
+  "rottweiler",
+  "boxer",
+  "shih tzu",
+];
 const userNameDecorator = function () {
-  return "<b>" + this.name + " (" + this.breed + ")</b>";
+  return "<b>" + this.title + "</b>  (" + breeds[Math.floor(Math.random() * breeds.length)] + ")";
 };
 
 directives = {
-  username: { html: userNameDecorator },
+  title: { html: userNameDecorator },
 };
 
 const getHTML = function () {
@@ -53,6 +64,6 @@ directivesMessage = {
 
 Transparency.render(document.getElementById("user-wrapper"), privatChats, directives);
 
-Transparency.render(document.getElementById("groups-wrapper"), groupChats);
+// Transparency.render(document.getElementById("groups-wrapper"), groupChats);
 
 Transparency.render(document.getElementById("message"), messages, directivesMessage);
