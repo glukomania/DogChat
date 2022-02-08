@@ -522,18 +522,57 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _transparency = require("transparency");
 var _transparencyDefault = parcelHelpers.interopDefault(_transparency);
-// const testtext = document.querySelector("#root");
-// testtext.textContent = "trololo";
-var hello = {
-    hello: "Hello",
-    goodbye: "<i>Goodbye!</i>",
-    greeting: "Howdy!",
-    "hi-label": "Terve!"
+var _dataJs = require("../data.js");
+const userNameDecorator = function() {
+    return "<b>" + this.name + " (" + this.breed + ")</b>";
 };
-const insertTemp = _transparencyDefault.default.render(document.getElementById("container"), hello);
-console.log("insertTemp", insertTemp);
+directives = {
+    username: {
+        html: userNameDecorator
+    }
+};
+const getHTML = function() {
+    console.log("gethtml", this.owner);
+    if (this.owner === "me") {
+        console.log("hetHTML - me");
+        return ownMessage(this.message, this.time);
+    } else {
+        console.log("hetHTML - other");
+        return otherMessage(this.message, this.time);
+    }
+};
+const otherMessage = function(message, time) {
+    console.log("other");
+    return `
+  <div class="message-container-outcome">
+    <i class="fa fa-user"></i>
+    <div class="message-outcome">
+      <div class="message-text">${message}</div>
+      <div class="message-time">${time}</div>
+    </div>
+  </div>`;
+};
+const ownMessage = function(message, time) {
+    console.log("my");
+    return `
+  <div class="message-container-income">
+    <i class="fa fa-user"></i>
+    <div class="message-income">
+      <div class="message-text">${message}</div>
+      <div class="message-time">${time}</div>
+    </div>
+  </div>`;
+};
+directivesMessage = {
+    insert: {
+        html: getHTML
+    }
+};
+_transparencyDefault.default.render(document.getElementById("user-wrapper"), _dataJs.privatChats, directives);
+_transparencyDefault.default.render(document.getElementById("groups-wrapper"), _dataJs.groupChats);
+_transparencyDefault.default.render(document.getElementById("message"), _dataJs.messages, directivesMessage);
 
-},{"transparency":"iTZ6d","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iTZ6d":[function(require,module,exports) {
+},{"transparency":"iTZ6d","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../data.js":"5pclG"}],"iTZ6d":[function(require,module,exports) {
 module.exports = require('./lib/transparency');
 
 },{"./lib/transparency":"heKgN"}],"heKgN":[function(require,module,exports) {
@@ -1228,6 +1267,65 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["7nZVA","8lqZg"], "8lqZg", "parcelRequire713d")
+},{}],"5pclG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "privatChats", ()=>privatChats
+);
+parcelHelpers.export(exports, "groupChats", ()=>groupChats
+);
+parcelHelpers.export(exports, "messages", ()=>messages
+);
+const privatChats = [
+    {
+        name: "Ivan",
+        breed: "pudel",
+        "count-messages": "0"
+    },
+    {
+        name: "Daniel",
+        breed: "labrador",
+        "count-messages": "3"
+    },
+    {
+        name: "Donald",
+        breed: "Bulldog",
+        "count-messages": "1"
+    },
+    {
+        name: "Anna",
+        breed: "Beagle",
+        "count-messages": "0"
+    },
+    {
+        name: "Maria",
+        breed: "Poodle",
+        "count-messages": "1"
+    }, 
+];
+const groupChats = [
+    {
+        username: "Park walkers",
+        "count-messages": "1"
+    },
+    {
+        username: "Poodels owners",
+        "count-messages": "0"
+    }, 
+];
+const messages = [
+    {
+        owner: "me",
+        message: "test from me",
+        time: "11:45"
+    },
+    {
+        owner: "Ivan",
+        message: "test from Ivan",
+        time: "11:50"
+    }, 
+];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["7nZVA","8lqZg"], "8lqZg", "parcelRequire713d")
 
 //# sourceMappingURL=index.975ef6c8.js.map

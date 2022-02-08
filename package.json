@@ -12,6 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-less": "^2.2.1",
+    "express": "^4.17.2",
     "less": "^4.1.2",
     "parcel": "^2.2.1"
   },

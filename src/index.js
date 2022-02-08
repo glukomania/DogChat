@@ -1,15 +1,58 @@
 import Transparency from "transparency";
+import { privatChats, groupChats, messages } from "../data.js";
 
-// const testtext = document.querySelector("#root");
-// testtext.textContent = "trololo";
-
-var hello = {
-  hello: "Hello",
-  goodbye: "<i>Goodbye!</i>",
-  greeting: "Howdy!",
-  "hi-label": "Terve!",
+const userNameDecorator = function () {
+  return "<b>" + this.name + " (" + this.breed + ")</b>";
 };
 
-const insertTemp = Transparency.render(document.getElementById("container"), hello);
+directives = {
+  username: { html: userNameDecorator },
+};
 
-console.log("insertTemp", insertTemp);
+const getHTML = function () {
+  console.log("gethtml", this.owner);
+
+  if (this.owner === "me") {
+    console.log("hetHTML - me");
+    return ownMessage(this.message, this.time);
+  } else {
+    console.log("hetHTML - other");
+
+    return otherMessage(this.message, this.time);
+  }
+};
+
+const otherMessage = function (message, time) {
+  console.log("other");
+
+  return `
+  <div class="message-container-outcome">
+    <i class="fa fa-user"></i>
+    <div class="message-outcome">
+      <div class="message-text">${message}</div>
+      <div class="message-time">${time}</div>
+    </div>
+  </div>`;
+};
+
+const ownMessage = function (message, time) {
+  console.log("my");
+  return `
+  <div class="message-container-income">
+    <i class="fa fa-user"></i>
+    <div class="message-income">
+      <div class="message-text">${message}</div>
+      <div class="message-time">${time}</div>
+    </div>
+  </div>`;
+};
+
+directivesMessage = {
+  insert: { html: getHTML },
+};
+
+Transparency.render(document.getElementById("user-wrapper"), privatChats, directives);
+
+Transparency.render(document.getElementById("groups-wrapper"), groupChats);
+
+Transparency.render(document.getElementById("message"), messages, directivesMessage);
